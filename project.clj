@@ -8,4 +8,4 @@
                  [ring/ring-jetty-adapter "1.3.0"]
                  [compojure "1.1.9"]]
   :plugins [[lein-ring "0.8.7"]]
-  :ring {:handler notifier.core/handler})
+  :ring {:handler notifier.core/app})

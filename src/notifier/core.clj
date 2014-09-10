@@ -1,4 +1,6 @@
-(ns notifier.core)
+(ns notifier.core
+    (:require [compojure.core :refer :all]
+            [compojure.route :as route]))
 
 (defn foo
   "I don't do a whole lot."
@@ -16,9 +18,8 @@
    :headers {"Content-Type" "text/plain"}
    :body text})
 
-(defn handler [req]
-  (let [uri (:uri req)]
-    (cond
-      (= uri "/incidents") (r (get_incs))
-      (= uri "/messages") (r (get_msgs 1))
-      :else (r uri))))
+
+(defroutes app
+  (GET "/incidents" [] (r (get_incs)))
+  (GET "/messages" [] (r (get_msgs 1)))
+  (route/not-found "<h1>Page not found</h1>"))
